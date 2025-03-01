@@ -4,17 +4,18 @@ import { User } from "./domain/entities/user.entity";
 import { UserController } from "./infrastructure/controllers/user.controller";
 import { UserTypeOrmRepository } from "./infrastructure/persistence/user.typeorm.repository";
 import { CreateUserUseCase } from "./application/create-user.use-case";
+import { UserRepository } from './domain/repositories/user.repository'; 
 
 @Module({
     imports: [TypeOrmModule.forFeature([User])],
     controllers: [UserController],
     providers: [
         {
-            provide: 'UserRepository', 
-            useClass: UserTypeOrmRepository
+            provide: UserRepository,
+            useClass: UserTypeOrmRepository,
         },
-        CreateUserUseCase
+        CreateUserUseCase,
     ],
-    exports: ['UserRepository']
+    exports: [UserRepository]
 })
 export class UsersModule {}
