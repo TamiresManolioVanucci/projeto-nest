@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -17,9 +18,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       entities: [], // Adicione todas as entidades aqui
       synchronize: process.env.TYPEORM_SYNC === 'true', // Controle isso via .env
       logging: process.env.TYPEORM_LOGGING === 'true',
-    })
-  ],
-  controllers: [],
-  providers: [],
+    }),
+    UsersModule
+  ]
 })
 export class AppModule {}
