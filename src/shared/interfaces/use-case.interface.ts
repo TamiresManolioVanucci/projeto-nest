@@ -1,3 +1,5 @@
+import { CreateUserDTO } from "src/modules/users/infrastructure/dtos/create-user.dto";
+
 export interface UseCase {
-    execute(body: any): Promise<any>;
+    execute(body: CreateUserDTO): Promise<any>;
 }

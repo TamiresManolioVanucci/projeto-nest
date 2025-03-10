@@ -5,7 +5,7 @@ import { UserRepository } from "src/modules/users/domain/repositories/user.repos
 @Injectable()
 @ValidatorConstraint({ async: true })
 export class EmailIsUniqueValidator implements ValidatorConstraintInterface {
-    constructor(private userRepository: UserRepository) { }
+    constructor(private readonly userRepository: UserRepository) { }
 
     async validate(value: string): Promise<boolean> {
         try {

@@ -11,7 +11,7 @@ export class UserTypeOrmRepository implements UserRepository {
     ) { }
     
     create(user: User): Promise<User> {
-        throw new Error("Method not implemented.");
+        return this.repository.save(user);
     }
 
     findById(id: string): Promise<User | null> {
@@ -19,7 +19,9 @@ export class UserTypeOrmRepository implements UserRepository {
     }
 
     findByEmail(email: string): Promise<User | null> {
-        throw new Error("Method not implemented.");
+        return this.repository.findOne({
+            where: {email}
+        });
     }
     
     update(id: string, user: User): Promise<User> {

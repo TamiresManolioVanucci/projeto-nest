@@ -5,6 +5,7 @@ import { UserController } from "./infrastructure/controllers/user.controller";
 import { UserTypeOrmRepository } from "./infrastructure/persistence/user.typeorm.repository";
 import { CreateUserUseCase } from "./application/create-user.use-case";
 import { UserRepository } from './domain/repositories/user.repository'; 
+import { EmailIsUniqueValidator } from "src/shared/validation/email-is-unique.validator";
 
 @Module({
     imports: [TypeOrmModule.forFeature([User])],
@@ -14,8 +15,9 @@ import { UserRepository } from './domain/repositories/user.repository';
             provide: UserRepository,
             useClass: UserTypeOrmRepository,
         },
+        EmailIsUniqueValidator,
         CreateUserUseCase,
     ],
-    exports: [UserRepository]
+    exports: [UserRepository, EmailIsUniqueValidator]
 })
 export class UsersModule {}

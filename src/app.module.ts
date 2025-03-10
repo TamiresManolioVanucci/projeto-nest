@@ -15,7 +15,7 @@ import { UsersModule } from './modules/users/users.module';
       username: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
-      entities: [], // Adicione todas as entidades aqui
+      autoLoadEntities: true,
       synchronize: process.env.TYPEORM_SYNC === 'true', // Controle isso via .env
       logging: process.env.TYPEORM_LOGGING === 'true',
     }),
