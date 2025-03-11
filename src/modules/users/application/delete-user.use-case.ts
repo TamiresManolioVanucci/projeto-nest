@@ -20,3 +20,4 @@ export class DeleteUserUseCase implements UseCase {
         return user;
     }
 }
+
