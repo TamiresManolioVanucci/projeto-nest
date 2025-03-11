@@ -3,12 +3,13 @@ import { UserRepository } from "../domain/repositories/user.repository";
 import { Injectable } from "@nestjs/common";
 
 @Injectable()
-export class ListUserUseCase implements UseCase {
+export class FindUserUseCase implements UseCase {
     constructor(
         private readonly userRepository: UserRepository
     ) { }
 
-    async execute(): Promise<any> {
-        return await this.userRepository.list();
+    async execute(id: string): Promise<any> {
+        return await this.userRepository.findById(id);
     }
+ 
 }
