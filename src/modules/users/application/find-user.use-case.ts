@@ -7,9 +7,9 @@ export class FindUserUseCase implements UseCase {
     constructor(
         private readonly userRepository: UserRepository
     ) { }
-
+ 
     async execute(id: string): Promise<any> {
         return await this.userRepository.findById(id);
     }
- 
 }
+

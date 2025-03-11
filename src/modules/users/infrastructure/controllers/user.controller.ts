@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { Body, Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
 import { CreateUserUseCase } from "../../application/create-user.use-case";
 import { CreateUserDTO } from "../dtos/create-user.dto";
 import { HashPasswordPipe } from "src/shared/pipes/hash-password.pipe";
@@ -7,6 +7,8 @@ import { ListUserDTO } from "../dtos/list-user.dto";
 import { ListUserUseCase } from "../../application/list-user.use-case";
 import { FindUserUseCase } from "../../application/find-user.use-case";
 import { DeleteUserUseCase } from "../../application/delete-user.use-case";
+import { UpdateUserDTO } from "../dtos/update-user.dto";
+import { UpdateUserUseCase } from "../../application/update-user.use-case";
 
 @Controller('users')
 export class UserController {
@@ -14,7 +16,8 @@ export class UserController {
         private readonly createUserUseCase: CreateUserUseCase,
         private readonly listUserUseCase: ListUserUseCase,
         private readonly findUserUseCase: FindUserUseCase,
-        private readonly deleteUserUseCase: DeleteUserUseCase
+        private readonly deleteUserUseCase: DeleteUserUseCase,
+        private readonly updateUserUseCase: UpdateUserUseCase
     ) { }
 
     @Post()
@@ -54,7 +57,7 @@ export class UserController {
     }
 
     @Delete(':id')
-    async delete (@Param('id') id: string) {
+    async delete(@Param('id') id: string) {
         const userDeleted = await this.deleteUserUseCase.execute(id);
 
         return {
@@ -63,4 +66,16 @@ export class UserController {
         };
     }
 
+    @Put(':id')
+    async update(
+        @Param('id') id: string, 
+        @Body() body: UpdateUserDTO,
+    ) {
+        const userUpdated = await this.updateUserUseCase.execute(id, body);
+
+        return {
+            message: 'Usuário atualizado',
+            user: new ListUserDTO(userUpdated.id, userUpdated.name)
+        };
+    }
 }

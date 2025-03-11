@@ -28,8 +28,8 @@ export class UserTypeOrmRepository implements UserRepository {
         });
     }
     
-    update(id: string, user: User): Promise<User> {
-        throw new Error("Method not implemented.");
+    async update(user: User): Promise<User> {
+        return await this.repository.save(user);
     }
 
     async delete(id: string): Promise<void> {
