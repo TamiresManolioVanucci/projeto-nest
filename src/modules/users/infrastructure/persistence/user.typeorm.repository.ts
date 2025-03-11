@@ -10,26 +10,29 @@ export class UserTypeOrmRepository implements UserRepository {
         @InjectRepository(User) private readonly repository: Repository<User>
     ) { }
     
-    create(user: User): Promise<User> {
-        return this.repository.save(user);
+    async create(user: User): Promise<User> {
+        return await this.repository.save(user);
     }
 
-    findById(id: string): Promise<User | null> {
-        throw new Error("Method not implemented.");
+    async list(): Promise<User[]> {
+        return await this.repository.find();
     }
 
-    findByEmail(email: string): Promise<User | null> {
-        return this.repository.findOne({
+    async findById(id: string): Promise<User | null> {
+        return await this.repository.findOne({ where: { id } }); 
+    }
+
+    async findByEmail(email: string): Promise<User | null> {
+        return await this.repository.findOne({
             where: {email}
         });
     }
     
-    update(id: string, user: User): Promise<User> {
-        throw new Error("Method not implemented.");
+    async update(user: User): Promise<User> {
+        return await this.repository.save(user);
     }
 
-    delete(id: string): Promise<void> {
-        throw new Error("Method not implemented.");
+    async delete(id: string): Promise<void> {
+        await this.repository.delete(id);
     }
-    
 }

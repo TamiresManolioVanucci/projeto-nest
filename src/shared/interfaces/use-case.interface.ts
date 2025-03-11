@@ -1,5 +1,5 @@
-import { CreateUserDTO } from "src/modules/users/infrastructure/dtos/create-user.dto";
+import { CreateOrUpdateDTO } from "../util/create-or-update.dto";
 
 export interface UseCase {
-    execute(body: CreateUserDTO): Promise<any>;
+    execute(id?: string | null, body?: CreateOrUpdateDTO): Promise<any>;
 }

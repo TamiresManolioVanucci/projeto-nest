@@ -1,8 +1,9 @@
 import { IsEmail, IsNotEmpty, Matches, MinLength } from "class-validator";
+import { CreateOrUpdateDTO } from "src/shared/util/create-or-update.dto";
 import { EmailIsUnique } from "src/shared/validation/email-is-unique.validator";
 import { EqualField } from "src/shared/validation/equal-field.validator";
 
-export class CreateUserDTO {
+export class CreateUserDTO extends CreateOrUpdateDTO {
     @IsNotEmpty({ message: 'O campo name não pode ser vazio' })
     name: string;
 

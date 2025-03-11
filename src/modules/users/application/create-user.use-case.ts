@@ -9,13 +9,12 @@ export class CreateUserUseCase implements UseCase {
     constructor(
         private readonly userRepository: UserRepository
     ) { }
- 
-    execute(body: CreateUserDTO): Promise<any> {
+
+    async execute(id: string | null, body: CreateUserDTO): Promise<any> {
         const user = new User();
 
         Object.assign(user, body as User);
 
-        return this.userRepository.create(user);
+        return await this.userRepository.create(user);
     }
-    
 }
