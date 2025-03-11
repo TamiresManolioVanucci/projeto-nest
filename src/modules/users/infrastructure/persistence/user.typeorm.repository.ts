@@ -14,6 +14,10 @@ export class UserTypeOrmRepository implements UserRepository {
         return this.repository.save(user);
     }
 
+    list(): Promise<User[]> {
+        return this.repository.find();
+    }
+
     findById(id: string): Promise<User | null> {
         throw new Error("Method not implemented.");
     }
