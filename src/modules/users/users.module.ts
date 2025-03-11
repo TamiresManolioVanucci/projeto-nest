@@ -8,6 +8,7 @@ import { UserRepository } from './domain/repositories/user.repository';
 import { EmailIsUniqueValidator } from "src/shared/validation/email-is-unique.validator";
 import { ListUserUseCase } from "./application/list-user.use-case";
 import { FindUserUseCase } from "./application/find-user.use-case";
+import { DeleteUserUseCase } from "./application/delete-user.use-case";
 
 @Module({
     imports: [TypeOrmModule.forFeature([User])],
@@ -20,7 +21,8 @@ import { FindUserUseCase } from "./application/find-user.use-case";
         EmailIsUniqueValidator,
         CreateUserUseCase,
         ListUserUseCase,
-        FindUserUseCase
+        FindUserUseCase,
+        DeleteUserUseCase
     ],
     exports: [UserRepository, EmailIsUniqueValidator]
 })
